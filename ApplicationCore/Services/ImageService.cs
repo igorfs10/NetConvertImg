@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Interfaces.Services;
+﻿using ApplicationCore.Constants;
+using ApplicationCore.Interfaces.Services;
 using ApplicationCore.Models;
 using ImageMagick;
 
@@ -13,7 +14,7 @@ namespace ApplicationCore.Services
             _fileService = fileService;
         }
 
-        public bool ConvertImage(List<AddedFile> files, string outPutPath, string type)
+        public bool ConvertImage(List<AddedFile> files, string outPutPath, string type, int width, int height)
         {
             foreach (AddedFile item in files)
             {
@@ -21,10 +22,14 @@ namespace ApplicationCore.Services
                 using var image = new MagickImage(imageBytes);
                 image.Strip();
                 image.Quality = 100;
-                image.Format = MagickFormat.Png;
-                image.Resize(500, 500);
+                image.Format = ImageExtensions.Extensions[type];
+                MagickGeometry size = new(width, height)
+                {
+                    IgnoreAspectRatio = true
+                };
+                image.Resize(size);
 
-                string outPath = Path.Combine(outPutPath, "convert", $"{Path.GetFileNameWithoutExtension(item.FilePath)}.{image.Format.ToString().ToLower()}");
+                string outPath = Path.Combine(outPutPath, $"{Path.GetFileNameWithoutExtension(item.FilePath)}.{image.Format.ToString().ToLower()}");
 
                 _fileService.SaveFile(outPath, image.ToByteArray());
             }

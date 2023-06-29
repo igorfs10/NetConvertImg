@@ -11,5 +11,14 @@ namespace ApplicationCore.Models.Entities
 
         [Column("CONF_TYPE")]
         public string? FileType { get; set; }
+
+        [Column("CONF_OUTPUT")]
+        public string? OutputFolder { get; set; }
+
+        [Column("CONF_HEIGHT")]
+        public int? Height { get; set; }
+
+        [Column("CONF_WIDTH")]
+        public int Width { get; set; }
     }
 }

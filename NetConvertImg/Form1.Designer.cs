@@ -51,11 +51,11 @@
             // 
             // button1
             // 
-            button1.Location = new Point(578, 12);
+            button1.Location = new Point(578, 147);
             button1.Name = "button1";
-            button1.Size = new Size(148, 23);
+            button1.Size = new Size(85, 23);
             button1.TabIndex = 1;
-            button1.Text = "Adicionar Arquivos";
+            button1.Text = "Adicionar";
             button1.UseVisualStyleBackColor = true;
             button1.Click += Button1_Click;
             // 
@@ -98,7 +98,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(594, 232);
+            button2.Location = new Point(588, 286);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 3;
@@ -126,19 +126,19 @@
             // 
             cbbExtensao.DropDownStyle = ComboBoxStyle.DropDownList;
             cbbExtensao.FormattingEnabled = true;
-            cbbExtensao.Location = new Point(451, 286);
+            cbbExtensao.Location = new Point(578, 30);
             cbbExtensao.Name = "cbbExtensao";
-            cbbExtensao.Size = new Size(189, 23);
+            cbbExtensao.Size = new Size(85, 23);
             cbbExtensao.TabIndex = 6;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(451, 268);
+            label2.Location = new Point(578, 12);
             label2.Name = "label2";
-            label2.Size = new Size(163, 15);
+            label2.Size = new Size(57, 15);
             label2.TabIndex = 7;
-            label2.Text = "Extensão do arquivo de saída:";
+            label2.Text = "Extensão:";
             // 
             // button3
             // 
@@ -152,24 +152,24 @@
             // 
             // txtAltura
             // 
-            txtAltura.Location = new Point(12, 351);
+            txtAltura.Location = new Point(578, 74);
             txtAltura.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
             txtAltura.Name = "txtAltura";
-            txtAltura.Size = new Size(120, 23);
+            txtAltura.Size = new Size(85, 23);
             txtAltura.TabIndex = 9;
             // 
             // txtLargura
             // 
-            txtLargura.Location = new Point(249, 351);
+            txtLargura.Location = new Point(578, 118);
             txtLargura.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
             txtLargura.Name = "txtLargura";
-            txtLargura.Size = new Size(120, 23);
+            txtLargura.Size = new Size(85, 23);
             txtLargura.TabIndex = 10;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(13, 333);
+            label3.Location = new Point(578, 56);
             label3.Name = "label3";
             label3.Size = new Size(42, 15);
             label3.TabIndex = 11;
@@ -178,7 +178,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(249, 333);
+            label4.Location = new Point(578, 100);
             label4.Name = "label4";
             label4.Size = new Size(85, 15);
             label4.TabIndex = 12;
@@ -189,7 +189,7 @@
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(733, 438);
+            ClientSize = new Size(671, 318);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(txtLargura);

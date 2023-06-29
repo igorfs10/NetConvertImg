@@ -4,6 +4,6 @@ namespace ApplicationCore.Interfaces.Services
 {
     public interface IImageService
     {
-        bool ConvertImage(List<AddedFile> files, string outPutPath, string type);
+        public bool ConvertImage(List<AddedFile> files, string outPutPath, string type, int width, int height);
     }
 }
