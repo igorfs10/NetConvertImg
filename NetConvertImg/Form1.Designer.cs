@@ -144,7 +144,7 @@
             // 
             button3.Location = new Point(347, 286);
             button3.Name = "button3";
-            button3.Size = new Size(22, 23);
+            button3.Size = new Size(25, 23);
             button3.TabIndex = 8;
             button3.Text = "...";
             button3.UseVisualStyleBackColor = true;
@@ -180,9 +180,9 @@
             label4.AutoSize = true;
             label4.Location = new Point(578, 100);
             label4.Name = "label4";
-            label4.Size = new Size(85, 15);
+            label4.Size = new Size(50, 15);
             label4.TabIndex = 12;
-            label4.Text = "Comprimento:";
+            label4.Text = "Largura:";
             // 
             // Form1
             // 
