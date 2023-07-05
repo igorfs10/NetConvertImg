@@ -18,20 +18,28 @@ namespace ApplicationCore.Services
         {
             foreach (AddedFile item in files)
             {
-                byte[] imageBytes = _fileService.GetFile(item.FilePath);
-                using var image = new MagickImage(imageBytes);
-                image.Strip();
-                image.Quality = 100;
-                image.Format = ImageExtensions.Extensions[type];
-                MagickGeometry size = new(width, height)
+                try
                 {
-                    IgnoreAspectRatio = true
-                };
-                image.Resize(size);
+                    byte[] imageBytes = _fileService.GetFile(item.FilePath);
+                    using var image = new MagickImage(imageBytes);
+                    image.Strip();
+                    image.Quality = 100;
+                    image.Format = ImageExtensions.Extensions[type];
+                    MagickGeometry size = new(width, height)
+                    {
+                        IgnoreAspectRatio = true
+                    };
+                    image.Resize(size);
 
-                string outPath = Path.Combine(outPutPath, $"{Path.GetFileNameWithoutExtension(item.FilePath)}.{image.Format.ToString().ToLower()}");
+                    string outPath = Path.Combine(outPutPath, $"{Path.GetFileNameWithoutExtension(item.FilePath)}.{image.Format.ToString().ToLower()}");
 
-                _fileService.SaveFile(outPath, image.ToByteArray());
+                    _fileService.SaveFile(outPath, image.ToByteArray());
+                    item.Status = "Success";
+                }
+                catch (Exception ex)
+                {
+                    item.Status = ex.Message;
+                }
             }
             return true;
         }

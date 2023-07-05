@@ -4,6 +4,7 @@ using ApplicationCore.Models;
 using ApplicationCore.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace NetConvertImg
 {
@@ -116,16 +117,22 @@ namespace NetConvertImg
                 else
                 {
                     _imageService.ConvertImage(AddedFiles.ToList(), pastaSaida, fileType, largura, altura);
-                    var table = _context.Set<AppConfiguration>();
-                    AppConfiguration? config = (from item in table select item).FirstOrDefault();
-                    if (config != null)
+                    try
                     {
-                        config.OutputFolder = pastaSaida;
-                        config.Width = largura;
-                        config.Height = altura;
-                        config.FileType = fileType;
-                        _context.SaveChanges();
+                        var table = _context.Set<AppConfiguration>();
+                        AppConfiguration? config = (from item in table select item).FirstOrDefault();
+                        if (config != null)
+                        {
+                            config.OutputFolder = pastaSaida;
+                            config.Width = largura;
+                            config.Height = altura;
+                            config.FileType = fileType;
+                            _context.SaveChanges();
+                        }
                     }
+                    catch { }
+                    ChangeRowColor();
+                    dataGridViewFiles.Refresh();
                     MessageBox.Show("Conversão realizada com sucesso.", "",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information);
@@ -146,6 +153,30 @@ namespace NetConvertImg
                 if (Directory.Exists(folderBrowserDialog1.SelectedPath))
                 {
                     txtPastaSaida.Text = folderBrowserDialog1.SelectedPath;
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AddedFiles.Clear();
+        }
+
+        private void ChangeRowColor()
+        {
+            foreach (DataGridViewRow row in dataGridViewFiles.Rows)
+            {
+                if (row.Cells[2].Value.ToString() == "Success")
+                {
+                    row.Cells[0].Style.ForeColor = Color.DarkGreen;
+                    row.Cells[1].Style.ForeColor = Color.DarkGreen;
+                    row.Cells[2].Style.ForeColor = Color.DarkGreen;
+                }
+                else
+                {
+                    row.Cells[0].Style.ForeColor = Color.DarkRed;
+                    row.Cells[1].Style.ForeColor = Color.DarkRed;
+                    row.Cells[2].Style.ForeColor = Color.DarkRed;
                 }
             }
         }

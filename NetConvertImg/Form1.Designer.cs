@@ -32,6 +32,7 @@
             dataGridViewFiles = new DataGridView();
             FilePath = new DataGridViewTextBoxColumn();
             FileSize = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
             openFileDialog1 = new OpenFileDialog();
             button2 = new Button();
             folderBrowserDialog1 = new FolderBrowserDialog();
@@ -44,6 +45,7 @@
             txtLargura = new NumericUpDown();
             label3 = new Label();
             label4 = new Label();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewFiles).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtAltura).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtLargura).BeginInit();
@@ -65,7 +67,7 @@
             dataGridViewFiles.AllowUserToResizeRows = false;
             dataGridViewFiles.BackgroundColor = Color.White;
             dataGridViewFiles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewFiles.Columns.AddRange(new DataGridViewColumn[] { FilePath, FileSize });
+            dataGridViewFiles.Columns.AddRange(new DataGridViewColumn[] { FilePath, FileSize, Status });
             dataGridViewFiles.Location = new Point(12, 12);
             dataGridViewFiles.Name = "dataGridViewFiles";
             dataGridViewFiles.ReadOnly = true;
@@ -76,21 +78,31 @@
             // 
             // FilePath
             // 
+            FilePath.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             FilePath.DataPropertyName = "FilePath";
             FilePath.HeaderText = "Path";
             FilePath.Name = "FilePath";
             FilePath.ReadOnly = true;
             FilePath.Resizable = DataGridViewTriState.False;
-            FilePath.Width = 415;
             // 
             // FileSize
             // 
+            FileSize.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             FileSize.DataPropertyName = "FileSize";
             FileSize.HeaderText = "Size";
             FileSize.Name = "FileSize";
             FileSize.ReadOnly = true;
             FileSize.Resizable = DataGridViewTriState.False;
-            FileSize.Width = 140;
+            FileSize.Width = 80;
+            // 
+            // Status
+            // 
+            Status.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Status.DataPropertyName = "Status";
+            Status.HeaderText = "Status";
+            Status.Name = "Status";
+            Status.ReadOnly = true;
+            Status.Width = 200;
             // 
             // openFileDialog1
             // 
@@ -184,12 +196,23 @@
             label4.TabIndex = 12;
             label4.Text = "Largura:";
             // 
+            // button4
+            // 
+            button4.Location = new Point(578, 176);
+            button4.Name = "button4";
+            button4.Size = new Size(85, 23);
+            button4.TabIndex = 13;
+            button4.Text = "Limpar";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // Form1
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(671, 318);
+            Controls.Add(button4);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(txtLargura);
@@ -221,8 +244,6 @@
         private DataGridView dataGridViewFiles;
         private OpenFileDialog openFileDialog1;
         private Button button2;
-        private DataGridViewTextBoxColumn FilePath;
-        private DataGridViewTextBoxColumn FileSize;
         private FolderBrowserDialog folderBrowserDialog1;
         private Label label1;
         private TextBox txtPastaSaida;
@@ -233,5 +254,9 @@
         private NumericUpDown txtLargura;
         private Label label3;
         private Label label4;
+        private DataGridViewTextBoxColumn FilePath;
+        private DataGridViewTextBoxColumn FileSize;
+        private DataGridViewTextBoxColumn Status;
+        private Button button4;
     }
 }
