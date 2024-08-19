@@ -3,12 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
-    public class BaseDbContext : DbContext
+    public class BaseDbContext(DbContextOptions options) : DbContext(options)
     {
         public DbSet<AppConfiguration> Configs { get; set; }
-
-        public BaseDbContext(DbContextOptions options) : base(options)
-        {
-        }
     }
 }

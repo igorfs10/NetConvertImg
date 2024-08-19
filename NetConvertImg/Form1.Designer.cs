@@ -204,7 +204,7 @@
             button4.TabIndex = 13;
             button4.Text = "Limpar";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            button4.Click += Button4_Click;
             // 
             // Form1
             // 

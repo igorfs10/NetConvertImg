@@ -13,8 +13,8 @@ namespace NetConvertImg
         private readonly IImageService _imageService;
         private readonly DbContext _context;
 
-        private readonly BindingList<AddedFile> AddedFiles = new();
-        private readonly BindingList<string> ExtensoesCombo = new(ImageExtensions.Extensions.Keys.ToList());
+        private readonly BindingList<AddedFile> AddedFiles = [];
+        private readonly BindingList<string> ExtensoesCombo = new([.. ImageExtensions.Extensions.Keys]);
 
         public Form1(IImageService imageService, DbContext context)
         {
@@ -52,7 +52,7 @@ namespace NetConvertImg
             if (File.Exists(inputPath))
             {
                 FileInfo fi = new(inputPath);
-                if (ImageExtensions.Extensions.Keys.Any(ext => ext.ToUpper().Contains(fi.Extension.ToUpper())))
+                if (ImageExtensions.Extensions.Keys.Any(ext => ext.Contains(fi.Extension, StringComparison.CurrentCultureIgnoreCase)))
                 {
                     string fileSize = string.Format("{0:#,##0}", new FileInfo(inputPath).Length) + " Bytes";
                     AddedFiles.Add(new() { FilePath = inputPath, FileSize = fileSize });
@@ -116,7 +116,7 @@ namespace NetConvertImg
                 }
                 else
                 {
-                    _imageService.ConvertImage(AddedFiles.ToList(), pastaSaida, fileType, largura, altura);
+                    _imageService.ConvertImage([.. AddedFiles], pastaSaida, fileType, largura, altura);
                     try
                     {
                         var table = _context.Set<AppConfiguration>();
@@ -157,7 +157,7 @@ namespace NetConvertImg
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             AddedFiles.Clear();
         }

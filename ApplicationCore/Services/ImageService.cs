@@ -5,22 +5,15 @@ using ImageMagick;
 
 namespace ApplicationCore.Services
 {
-    public class ImageService : IImageService
+    public class ImageService(IFileService fileService) : IImageService
     {
-        private readonly IFileService _fileService;
-
-        public ImageService(IFileService fileService)
-        {
-            _fileService = fileService;
-        }
-
         public bool ConvertImage(List<AddedFile> files, string outPutPath, string type, int width, int height)
         {
             foreach (AddedFile item in files)
             {
                 try
                 {
-                    byte[] imageBytes = _fileService.GetFile(item.FilePath);
+                    byte[] imageBytes = fileService.GetFile(item.FilePath);
                     using var image = new MagickImage(imageBytes);
                     image.Strip();
                     image.Quality = 100;
@@ -33,7 +26,7 @@ namespace ApplicationCore.Services
 
                     string outPath = Path.Combine(outPutPath, $"{Path.GetFileNameWithoutExtension(item.FilePath)}.{image.Format.ToString().ToLower()}");
 
-                    _fileService.SaveFile(outPath, image.ToByteArray());
+                    fileService.SaveFile(outPath, image.ToByteArray());
                     item.Status = "Success";
                 }
                 catch (Exception ex)
