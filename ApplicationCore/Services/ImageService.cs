@@ -7,7 +7,7 @@ namespace ApplicationCore.Services
 {
     public class ImageService(IFileService fileService) : IImageService
     {
-        public bool ConvertImage(List<AddedFile> files, string outPutPath, string type, int width, int height)
+        public bool ConvertImage(List<AddedFile> files, string outPutPath, string type, uint width, uint height)
         {
             foreach (AddedFile item in files)
             {

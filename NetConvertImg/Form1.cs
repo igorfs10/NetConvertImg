@@ -92,8 +92,8 @@ namespace NetConvertImg
         {
             if (AddedFiles.Any())
             {
-                int altura = Convert.ToInt32(txtAltura.Value);
-                int largura = Convert.ToInt32(txtLargura.Value);
+                uint altura = Convert.ToUInt32(txtAltura.Value);
+                uint largura = Convert.ToUInt32(txtLargura.Value);
                 string pastaSaida = txtPastaSaida.Text;
                 string fileType = cbbExtensao.Text;
                 if (!Directory.Exists(pastaSaida))

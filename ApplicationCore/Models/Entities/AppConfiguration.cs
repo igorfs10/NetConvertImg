@@ -16,9 +16,9 @@ namespace ApplicationCore.Models.Entities
         public string? OutputFolder { get; set; }
 
         [Column("CONF_HEIGHT")]
-        public int? Height { get; set; }
+        public uint Height { get; set; }
 
         [Column("CONF_WIDTH")]
-        public int Width { get; set; }
+        public uint Width { get; set; }
     }
 }
